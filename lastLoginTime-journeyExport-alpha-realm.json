@@ -1,0 +1,491 @@
+{
+  "meta": {
+    "origin": "https://tenant/platform/?realm=alpha#/journeys",
+    "exportedBy": "darinder.shokar@forgerock.com",
+    "exportDate": "2023-03-15T09:37:08.553Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "lastLoginTime"
+    ],
+    "innerTreesIncluded": [
+      "ProgressiveProfile"
+    ]
+  },
+  "trees": {
+    "ProgressiveProfile": {
+      "tree": {
+        "_id": "ProgressiveProfile",
+        "_rev": "-267096143",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"Progressive Profile\"]"
+        },
+        "entryNodeId": "8afdaec3-275e-4301-bb53-34f03e6a4b29",
+        "nodes": {
+          "423a959a-a1b9-498a-b0f7-596b6b6e775a": {
+            "connections": {
+              "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "PATCHED": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Patch Object",
+            "nodeType": "PatchObjectNode",
+            "x": 766,
+            "y": 36
+          },
+          "8afdaec3-275e-4301-bb53-34f03e6a4b29": {
+            "connections": {
+              "false": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "true": "a1f45b44-5bf7-4c57-aa3f-75c619c7db8e"
+            },
+            "displayName": "Login Count Decision",
+            "nodeType": "LoginCountDecisionNode",
+            "x": 152,
+            "y": 36
+          },
+          "a1f45b44-5bf7-4c57-aa3f-75c619c7db8e": {
+            "connections": {
+              "false": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "true": "a5aecad8-854a-4ed5-b719-ff6c90e858c0"
+            },
+            "displayName": "Query Filter Decision",
+            "nodeType": "QueryFilterDecisionNode",
+            "x": 357,
+            "y": 36
+          },
+          "a5aecad8-854a-4ed5-b719-ff6c90e858c0": {
+            "connections": {
+              "outcome": "423a959a-a1b9-498a-b0f7-596b6b6e775a"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 555,
+            "y": 20
+          }
+        },
+        "description": "Prompt for missing preferences on 3rd login",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 802,
+            "y": 312
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 919,
+            "y": 171
+          },
+          "startNode": {
+            "x": 50,
+            "y": 58.5
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "423a959a-a1b9-498a-b0f7-596b6b6e775a": {
+          "_id": "423a959a-a1b9-498a-b0f7-596b6b6e775a",
+          "_rev": "1288219125",
+          "identityResource": "managed/alpha_user",
+          "patchAsObject": false,
+          "ignoredFields": [],
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "PatchObjectNode",
+            "name": "Patch Object",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "PATCHED",
+              "displayName": "Patched"
+            },
+            {
+              "id": "FAILURE",
+              "displayName": "Failed"
+            }
+          ]
+        },
+        "8afdaec3-275e-4301-bb53-34f03e6a4b29": {
+          "_id": "8afdaec3-275e-4301-bb53-34f03e6a4b29",
+          "_rev": "-1679047423",
+          "interval": "AT",
+          "identityAttribute": "userName",
+          "amount": 3,
+          "_type": {
+            "_id": "LoginCountDecisionNode",
+            "name": "Login Count Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "a1f45b44-5bf7-4c57-aa3f-75c619c7db8e": {
+          "_id": "a1f45b44-5bf7-4c57-aa3f-75c619c7db8e",
+          "_rev": "-1852493841",
+          "identityAttribute": "userName",
+          "queryFilter": "!(/preferences pr) or /preferences/marketing eq false or /preferences/updates eq false",
+          "_type": {
+            "_id": "QueryFilterDecisionNode",
+            "name": "Query Filter Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "a5aecad8-854a-4ed5-b719-ff6c90e858c0": {
+          "_id": "a5aecad8-854a-4ed5-b719-ff6c90e858c0",
+          "_rev": "380010937",
+          "nodes": [
+            {
+              "_id": "0a042e10-b22e-4e02-86c4-65e26e775f7a",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {
+            "en": "Please select your preferences"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "0a042e10-b22e-4e02-86c4-65e26e775f7a": {
+          "_id": "0a042e10-b22e-4e02-86c4-65e26e775f7a",
+          "_rev": "-1210529544",
+          "attributesToCollect": [
+            "preferences/updates",
+            "preferences/marketing"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": false,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    },
+    "lastLoginTime": {
+      "tree": {
+        "_id": "lastLoginTime",
+        "_rev": "1456995386",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"Authentication\"]"
+        },
+        "entryNodeId": "e5d98e48-2e00-4693-a258-325599be961a",
+        "nodes": {
+          "26050b4b-c526-47da-8a0f-a52a13c461dc": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "588b698a-c9d1-4fe4-aaf1-ca0eb3884528"
+            },
+            "displayName": "Data Store Decision",
+            "nodeType": "DataStoreDecisionNode",
+            "x": 437,
+            "y": 143
+          },
+          "2ed99667-017d-4406-a641-5253c0c1afd7": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Inner Tree Evaluator",
+            "nodeType": "InnerTreeEvaluatorNode",
+            "x": 1338,
+            "y": 125
+          },
+          "588b698a-c9d1-4fe4-aaf1-ca0eb3884528": {
+            "connections": {
+              "Success": "ec8c68be-b652-42de-904f-d80f63f07993"
+            },
+            "displayName": "Store Last Login Time",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 649,
+            "y": 145.5
+          },
+          "dc574da2-4b07-4050-9c83-76e8bd96c2b1": {
+            "connections": {
+              "outcome": "2ed99667-017d-4406-a641-5253c0c1afd7"
+            },
+            "displayName": "Increment Login Count",
+            "nodeType": "IncrementLoginCountNode",
+            "x": 1102,
+            "y": 151.5
+          },
+          "e5d98e48-2e00-4693-a258-325599be961a": {
+            "connections": {
+              "outcome": "26050b4b-c526-47da-8a0f-a52a13c461dc"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 210,
+            "y": 109
+          },
+          "ec8c68be-b652-42de-904f-d80f63f07993": {
+            "connections": {
+              "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "PATCHED": "dc574da2-4b07-4050-9c83-76e8bd96c2b1"
+            },
+            "displayName": "Patch Object",
+            "nodeType": "PatchObjectNode",
+            "x": 883,
+            "y": 119
+          }
+        },
+        "description": "Platform Login Tree",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1616,
+            "y": 152
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 841,
+            "y": 450
+          },
+          "startNode": {
+            "x": 70,
+            "y": 155
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "26050b4b-c526-47da-8a0f-a52a13c461dc": {
+          "_id": "26050b4b-c526-47da-8a0f-a52a13c461dc",
+          "_rev": "573960307",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "2ed99667-017d-4406-a641-5253c0c1afd7": {
+          "_id": "2ed99667-017d-4406-a641-5253c0c1afd7",
+          "_rev": "-368987461",
+          "tree": "ProgressiveProfile",
+          "_type": {
+            "_id": "InnerTreeEvaluatorNode",
+            "name": "Inner Tree Evaluator",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "588b698a-c9d1-4fe4-aaf1-ca0eb3884528": {
+          "_id": "588b698a-c9d1-4fe4-aaf1-ca0eb3884528",
+          "_rev": "1304738591",
+          "script": "1236ef59-0b4e-4fd1-873f-e7edba95e444",
+          "outcomes": [
+            "Success"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Success",
+              "displayName": "Success"
+            }
+          ]
+        },
+        "dc574da2-4b07-4050-9c83-76e8bd96c2b1": {
+          "_id": "dc574da2-4b07-4050-9c83-76e8bd96c2b1",
+          "_rev": "-988483375",
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "IncrementLoginCountNode",
+            "name": "Increment Login Count",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "e5d98e48-2e00-4693-a258-325599be961a": {
+          "_id": "e5d98e48-2e00-4693-a258-325599be961a",
+          "_rev": "1830356431",
+          "nodes": [
+            {
+              "_id": "fe05b40c-1f87-4617-ba42-166a49cb83f9",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "55256e27-d41e-4743-bd20-318c5a3cf135",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en": "New here? <a href=\"#/service/Registration\">Create an account</a><br><a href=\"#/service/ForgottenUsername\">Forgot username?</a><a href=\"#/service/ResetPassword\"> Forgot password?</a>"
+          },
+          "pageHeader": {
+            "en": "Sign In"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "ec8c68be-b652-42de-904f-d80f63f07993": {
+          "_id": "ec8c68be-b652-42de-904f-d80f63f07993",
+          "_rev": "1560000193",
+          "identityResource": "managed/alpha_user",
+          "patchAsObject": false,
+          "ignoredFields": [
+            "password"
+          ],
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "PatchObjectNode",
+            "name": "Patch Object",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "PATCHED",
+              "displayName": "Patched"
+            },
+            {
+              "id": "FAILURE",
+              "displayName": "Failed"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "fe05b40c-1f87-4617-ba42-166a49cb83f9": {
+          "_id": "fe05b40c-1f87-4617-ba42-166a49cb83f9",
+          "_rev": "2009757916",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "55256e27-d41e-4743-bd20-318c5a3cf135": {
+          "_id": "55256e27-d41e-4743-bd20-318c5a3cf135",
+          "_rev": "526093037",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "1236ef59-0b4e-4fd1-873f-e7edba95e444": {
+          "_id": "1236ef59-0b4e-4fd1-873f-e7edba95e444",
+          "name": "last-login-time",
+          "description": "Script to store the last login time for a user on successful AuthN",
+          "script": "\"/**\\n * @file Script to store the last login time of a user on successful AuthN\\n * @version 0.1.0\\n * @keywords authN lastLoginTime ISO8601\\n * @license\\n * DISCLAIMER: The sample code described herein is provided on an \\\"as is\\\" basis, without warranty of any kind, to the fullest extent permitted by law. ForgeRock does not warrant or guarantee the individual success developers may have in implementing the sample code on their development platforms or in production configurations. ForgeRock does not warrant, guarantee or make any representations regarding the use, results of use, accuracy, timeliness or completeness of any data or information relating to the sample code. ForgeRock disclaims all warranties, expressed or implied, and in particular, disclaims all warranties of merchantability, and warranties related to the code, or any service or software related thereto.\\n * ForgeRock shall not be liable for any direct, indirect or consequential damages or costs of any type arising out of any action taken by you or others related to the sample code.\\n */\\n\\n/**\\n * Script configuration\\n*/\\nvar config = {\\n    /**\\n     * @property {string} nodeName - The name of the executing node, used for logging\\n     * @property {string} lastLoginAttribute - The name of attribute used to the store the last login timestamp of a user\\n     */\\n    lastLoginAttribute: \\\"frUnindexedDate1\\\",\\n    nodeName: \\\"***last-login-time\\\"\\n};\\n\\n/**\\n * Enum Pass or Fail outcomes\\n * @readonly\\n * @enum {number}\\n */\\nvar nodeOutcome = {\\n    PASS: \\\"Success\\\"\\n};\\n\\n/**\\n * Add the node info prefix to a log message\\n * @param {string} message - the message body\\n * @returns a tagged version of the message\\n */\\n function tag(message) {\\n    return \\\"***\\\".concat(config.nodeName).concat(\\\": \\\").concat(message);\\n}\\n\\n/**\\n * Node entry point\\n */\\nlogger.message(tag(\\\"Node executing\\\"));\\nvar dateTime = new Date().toISOString();\\nsharedState.get(\\\"objectAttributes\\\").put(config.lastLoginAttribute, dateTime);\\nlogger.message(tag(\\\"User object attributes updated to populate \\\" + config.lastLoginAttribute + \\\" with this date: \\\" + dateTime));\\noutcome = nodeOutcome.PASS;\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}
